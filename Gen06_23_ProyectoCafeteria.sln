@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Gen06_23_ProyectoCafeteria", "Gen06_23_ProyectoCafeteria\", "{E91CF388-D3C3-493B-A6F0-D8C74C96020D}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.7.2"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_61703"
+		Debug.AspNetCompiler.PhysicalPath = "Gen06_23_ProyectoCafeteria\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_61703\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_61703"
+		Release.AspNetCompiler.PhysicalPath = "Gen06_23_ProyectoCafeteria\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_61703\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "61703"
+		SlnRelativePath = "Gen06_23_ProyectoCafeteria\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E91CF388-D3C3-493B-A6F0-D8C74C96020D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E91CF388-D3C3-493B-A6F0-D8C74C96020D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A63DC564-B8FD-4011-B8C4-D6D6FC0D6533}
+	EndGlobalSection
+EndGlobal
