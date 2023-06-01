@@ -22,6 +22,7 @@
 				<link href="css/font-awesome.min.css" rel="stylesheet"/>
 				<link href="css/templatemo-style.css" rel="stylesheet"/>
 				<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+				<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
 
 				<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 				<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -81,6 +82,12 @@
 				<xsl:choose>
 					<xsl:when test="$TipoMenu=1">
 						<xsl:call-template name="Carta"></xsl:call-template>
+					</xsl:when>
+					<xsl:when test="$TipoMenu=2">
+						<xsl:call-template name="Contacto"></xsl:call-template>
+					</xsl:when>
+					<xsl:when test="$TipoMenu=3">
+						<xsl:call-template name="Playroom"></xsl:call-template>
 					</xsl:when>
 					<xsl:otherwise>
 						<xsl:call-template name="Home"></xsl:call-template>
@@ -424,28 +431,222 @@
 							<div class="tm-menu-product-content col-lg-9 col-md-9 contenedores" id="{@Nombre}">
 								<!-- menu content -->
 								<div>
-								<xsl:for-each select="Platillo">
-									<div class="tm-product">
-										<img src="{Imagen}" alt="Product"/>
-										<div class="tm-product-text">
-											<h3 class="tm-product-title">
-												<xsl:value-of select="@Nombre"/>
-											</h3>
-											<p class="tm-product-description">
-												<xsl:value-of select="Descripcion"/>
-											</p>
+									<xsl:for-each select="Platillo">
+										<div class="tm-product">
+											<img src="{Imagen}" alt="Product"/>
+											<div class="tm-product-text">
+												<h3 class="tm-product-title">
+													<xsl:value-of select="@Nombre"/>
+												</h3>
+												<p class="tm-product-description">
+													<xsl:value-of select="Descripcion"/>
+												</p>
+											</div>
+											<div class="tm-product-price">
+												<a href="#" class="tm-product-price-link tm-handwriting-font">
+													<span class="tm-product-price-currency">$</span>45
+												</a>
+											</div>
 										</div>
-										<div class="tm-product-price">
-											<a href="#" class="tm-product-price-link tm-handwriting-font">
-												<span class="tm-product-price-currency">$</span>45
-											</a>
-										</div>
-									</div>
-									
-								</xsl:for-each>
+
+									</xsl:for-each>
 								</div>
 							</div>
 						</xsl:for-each>
+					</div>
+				</section>
+			</div>
+		</div>
+		<script>
+			$(document).ready(function (){
+			$("#liDesayunos").addClass("active");
+			$(".contenedores").hide();
+			$("#Desayunos").show();
+			$(".tipomenu").click(function(){
+			$(".contenedores").hide();
+			var nombre = $(this).data("identificador");
+			$(".tipomenu").removeClass("active");
+			$(this).addClass("active");
+			$("#" + nombre).show();
+			});
+			});
+		</script>
+	</xsl:template>
+	<xsl:template name="Contacto">
+		<!--Api-->
+		<script src="//maps.googleapis.com/maps/api/js?key=AIzaSyCWeeateTaYGqsHhNcmoDfT7Us-vLDZVPs&amp;sensor=false&amp;language=en"></script>
+
+		<script src="js/geolocalizacion.js"></script>
+		<section class="tm-welcome-section">
+			<div class="container tm-position-relative">
+				<div class="tm-lights-container">
+					<img src="img/light.png" alt="Light" class="light light-1"/>
+					<img src="img/light.png" alt="Light" class="light light-2"/>
+					<img src="img/light.png" alt="Light" class="light light-3"/>
+				</div>
+				<div class="row tm-welcome-content">
+					<h2 class="white-text tm-handwriting-font tm-welcome-header">
+						<img src="img/header-line.png" alt="Line" class="tm-header-line"/>Conatactanos<img src="img/header-line.png" alt="Line" class="tm-header-line"/>
+					</h2>
+					<h2 class="gold-text tm-welcome-header-2">
+						<xsl:value-of select="Datos/NombreRestaurant"/>
+					</h2>
+					<!--Descripcion-->
+					<p class="gray-text tm-welcome-description">
+						<xsl:value-of select="Datos/Descripcion"/>
+						<text id="direccion" class="gold-text"></text>
+						<br>
+						</br>
+						<text id="direccion2" class="gold-text"></text>
+						<div id="street"></div>
+					</p>
+					<a href="#main" class="tm-more-button tm-more-button-welcome">Reservación</a>
+				</div>
+				<img src="img/table-set.png" alt="Table Set" class="tm-table-set img-responsive"/>
+			</div>
+		</section>
+		<div class="tm-main-section light-gray-bg">
+			<div class="container" id="main">
+				<section class="tm-section row">
+					<h2 class="col-lg-12 margin-bottom-30">Enviar Reservación</h2>
+					<form action="Contacto.aspx" method="post" class="tm-contact-form"
+						oninput="Total.value=numPersonas.valueAsNumber+estraPersonas.valueAsNumber">
+						<div class="col-lg-6 col-md-6">
+
+							<div class="form-group">
+								<input type="text" id="contact_name" name="contact_name" class="form-control" placeholder="NOMBRE" required="true" />
+							</div>
+
+							<div class="form-group">
+								<input type="email" id="contact_email" name="contact_email" class="form-control" placeholder="Correo Electronico" required="true"/>
+							</div>
+
+							<div class="form-group">
+								<input type="text" id="numPersonas" name="numPersonas" class="form-control" value="1" min="1" max="8" />
+							</div>
+
+							<div class="form-group">
+								<input type="number" is="extraPersonas" name="extraPersonas" class="form-control" value="0" min="0" max="4" />
+							</div>
+
+							<div class="form-group">
+								<input type="date" id="contact_fecha" name="contact_fecha" class="form-control"/>
+							</div>
+
+							<div class="form-group">
+								<input type="time" id="contact_hora" name="contact_hora" class="form-control" min="09:00:00" max="21:00:00"/>
+							</div>
+
+							<div class="form-group">
+								<output id="Total" class="form-control">1</output>
+							</div>
+
+							<div class="form-group">
+								<button class="tm-more-button" type="submit" name="submit">Hacer Reservacion</button>
+							</div>
+
+						</div>
+						<!--Mapita-->
+						<div class="col-lg-6 col-md-6">
+							<div id="google-map">
+								<div id="mapa"></div>
+							</div>
+						</div>
+					</form>
+				</section>
+			</div>
+		</div>
+		<!--Script-->
+		<script>
+			<![CDATA[   
+    $(document).ready(function(){
+        //Asignamos la hora actual al control de hora
+       //var timeControl = $("#contact_hora").get(0);
+       var timeControl = document.querySelector('input[type="time"]');  
+       var now = new Date(Date.now());
+       
+       //8:5
+       // 08:05
+       
+      var horas = now.getHours();
+       var minutos = now.getMinutes();
+       if(horas < 10)
+         {
+            horas = "0" + horas;
+         }
+       if(minutos < 10)
+         {
+            minutos = "0" + minutos;
+         } 
+       
+       <!--var formatted = now.getHours() + ":" + now.getMinutes();-->
+      var formatted = horas + ":" + minutos;
+      
+      timeControl.value = formatted;
+   
+   //Validamos que se seleccione la fecha a partir del día actual
+       var dd= now.getDate();
+       var mm= now.getMonth()+1; //Enero = 0
+       var yyyy= now.getFullYear();
+       if(dd<10){dd='0'+dd;}
+       if(mm<10){mm='0'+mm;}
+       //2019-12-31    2019-09-01   dd/mm/yyyy 
+       var today = yyyy + '-' + mm + '-' + dd;
+       
+       $("#contact_fecha").attr("min",today);
+     
+       getGeo();
+       dibujaMapa(19.046943, -98.041922);
+       
+       <!--Latitud y Longitud-->
+        
+    });
+  ]]>
+
+
+		</script>
+	</xsl:template>
+	<xsl:template name="Playroom">
+		<section class="tm-welcome-section">
+			<div class="container tm-position-relative">
+				<div class="tm-lights-container">
+					<img src="img/light.png" alt="Light" class="light light-1"/>
+					<img src="img/light.png" alt="Light" class="light light-2"/>
+					<img src="img/light.png" alt="Light" class="light light-3"/>
+				</div>
+				<div class="row tm-welcome-content">
+					<h2 class="white-text tm-handwriting-font tm-welcome-header">
+						<img src="img/header-line.png" alt="Line" class="tm-header-line"/>
+						Play Room<img src="img/header-line.png" alt="Line" class="tm-header-line"/>
+					</h2>
+					<h2 class="gold-text tm-welcome-header-2">
+						<xsl:value-of select="Datos/NombreRestaurant"/>
+					</h2>
+					<p class="gray-text tm-welcome-description">
+						<text class="gold-text">
+							<!--Video, Audio y Drag and Drop con HTML-->
+						</text>
+						<div>
+							<video controls="" width="100%" poster="/img/wrc.jpg">
+								<source src="/Multimedia/wrc.mp4"></source>
+							</video>
+						</div>
+					</p>
+					<a href="#main" class="tm-more-button tm-more-button-welcome">Details</a>
+				</div>
+				<img src="img/table-set.png" alt="Table Set" class="tm-table-set img-responsive"/>
+			</div>
+		</section>
+		<div class="tm-main-section light-gray-bg">
+			<div class="container" id="main">
+				<section class="tm-section row">
+					<div id="ContenerdorAudio">
+						<div id="fotoAudio" style="width:100%">
+							<img src="/img/wrc2.jpg" width="100%"></img>
+							<audio controls="" style="width:100%">
+								<source src="/Multimedia/audio.mp3"></source>
+							</audio>
+						</div>
 					</div>
 				</section>
 			</div>
